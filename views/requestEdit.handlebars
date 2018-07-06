@@ -1,0 +1,74 @@
+{{!-- This is the update page the user can use in case they want to make changes to their pickup request --}}
+{{!-- I suggest we RENAME this file AFTER EVERYTHIGN IS UP AND RUNNING to updateRequest.handlebars --}}
+
+<div class="container">
+
+    {{!-- Testing what the id is set to right now --}}
+    {{!-- <p>{{user.newUserId}}</p> --}}
+
+    <form id="update-user" data-user-id={{request.newUserId}} data-request-id={{request.id}}>
+        {{!-- <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name-update" value="{{user.name}}">
+        </div> --}}
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone-update" value="{{request.phone}}">
+        </div>
+        {{!-- <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" id="address-update" value="{{request.address}}">
+        </div> --}}
+        <div class="form-group">
+            <label for="type">Type:</label>
+            {{!-- This is the old code --}} 
+            {{!--
+            <input type="text" class="form-control" id="type-update" value="{{request.type}}"> --}} 
+            
+            {{!-- This is the dropdown I tried, but it wouldn't show the request input on this end --}} 
+            {{!--<select type="text" class="form-control" id="type" value="{{request.type}}">
+                <option value="aluminum">Aluminum</option>
+                <option value="paper">Paper</option>
+                <option value="glass">Glass</option>
+                <option value="cardboard">Cardboard</option> 
+            </select> --}} 
+            
+            {{!-- Now trying radio butons, but also couldn't get it to show request input on this end --}}
+            {{!-- GOT IT!  WOOOHOOO!  THANKS TRAVIS! --}}
+            <br>
+            <input type="radio" name="type" value="aluminum" class="type" {{#is request.type "aluminum"}}checked{{/is}}> Aluminum
+            <br>
+            <input type="radio" name="type" value="glass" class="type" {{#is request.type "glass"}}checked{{/is}}> Glass
+            <br>
+            <input type="radio" name="type" value="paper" class="type" {{#is request.type "paper"}}checked{{/is}}> Paper
+            <br>
+            <input type="radio" name="type" value="cardboard" class="type" {{#is request.type "cardboard"}}checked{{/is}}> Cardboard
+            <br>
+        </div>
+        <div class="form-group">
+            <label for="quantity_in_lbs">Quantity (in lbs):</label>
+            <input type="text" class="form-control" id="quantity_in_lbs-update" value="{{request.quantity_in_lbs}}">
+        </div>
+        <div class="form-group">
+            <label for="pickupStart">Pickup Start Time:</label>
+            <input type="text" class="form-control" id="pickupStart-update" value="{{request.pickupStart}}">
+        </div>
+        <div class="form-group">
+            <label for="pickupEnd">Pickup End Time:</label>
+            <input type="text" class="form-control" id="pickupEnd-update" value="{{request.pickupEnd}}">
+        </div>
+        <button type="submit" class="btn btn-default">Update</button>
+
+        <form action="/addUser" class="inline">
+            <button class="btn btn-default">Go Back</button>
+        </form>
+        
+    </form>
+</div>
+
+{{!--
+<pre>{{user.name}}
+    {{user.phone}}
+    {{user.address}}
+    {{user.type}}
+    </pre> --}}

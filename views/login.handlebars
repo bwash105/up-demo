@@ -1,0 +1,26 @@
+{{!-- This is the BRAND NEW "log in" page I just created --}} {{!-- We later check the email and password a user typed matches
+what they used to sign up for our app (stored in our databse) If email and password do match we later give them permission
+to see their private info, but they cannot see other users private info --}}
+
+<div class="container">
+
+    <a class="btn btn-default homepage" href="/">Homepage</a>
+
+    <h3>
+        <strong>User Log In</strong>
+    </h3>
+
+    <form id="login-button">
+        <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="text" class="form-control" id="loginEmail">
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input type="password" class="form-control" id="loginPassword">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+</div>

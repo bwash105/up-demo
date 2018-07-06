@@ -1,0 +1,142 @@
+{{!-- This is a new page I just created --}} {{!-- To Do: *Show user their personal info: name, email, address *LATER show
+user their accumulated points *Let user post new pickup reqest from here too *Show user all of THEIR pickup requests only
+(with personal info) *User must go to another page to see all requests made by all Up Community Members --}}
+
+<div class="container">
+
+    <a class="btn btn-default  homepage" href="/">Homepage</a>
+    <a class="btn btn-default  homepage" href="/public">Community Activity</a>
+
+    {{!-- This table shows the user their personal info --}}
+    <table class="table">
+        <thead>
+            <h1>Hello {{users.name}} {{!-- look up how to use handlebars to insert the users name --}} !
+            </h1>
+            <h3>
+                Here is your personal information:
+            </h3>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{!-- Change this so its no longer an each loop, its just for one user --}} {{!-- {{#each users}} --}}
+            <tr>
+                <td>{{users.name}}</td>
+                <td>{{users.email}}</td>
+                <td>{{users.address}}</td>
+
+                {{!-- If we want to bring back the edit and delete buttons we have to set them up to work --}} {{!--
+                <td>
+                    <button class="btn btn-danger delete-btn" data-id={{this.id}}>Delete</button>
+                </td>
+                <td>
+                    <a class="btn btn-default edit-btn" href="/user/{{this.id}}">Edit</a>
+                </td> --}}
+            </tr>
+            {{!-- {{/each}} --}}
+        </tbody>
+    </table>
+
+    <br>
+    <br> {{!-- This is the pickup request form --}}
+    <h3>
+        Use this form to submit a new pickup request:
+    </h3>
+    {{!-- I commented out name and address bc we want to pull these from the newUsers table so they are EXACTLY the same --}}
+    <form id="profile-pickup-request">
+        {{!--
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name">
+        </div> --}}
+        <input type="hidden" class="form-control" id="user-id" value={{users.id}}>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone">
+        </div>
+        {{!--
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" id="address">
+        </div> --}}
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <input type="radio" name="type" value="aluminum" class="type"> Aluminum
+            <br>
+            <input type="radio" name="type" value="glass" class="type"> Glass
+            <br>
+            <input type="radio" name="type" value="paper" class="type"> Paper
+            <br>
+            <input type="radio" name="type" value="cardboard" class="type"> Cardboard
+            <br>
+        </div>
+        <div class="form-group">
+            <label for="quantity_in_lbs">Quantity (in lbs):</label>
+            <input type="text" class="form-control" id="quantity_in_lbs">
+        </div>
+        <div class="form-group">
+            <label for="pickupStart">Pickup Start Time:</label>
+            <input type="text" class="form-control" id="pickupStart">
+        </div>
+        <div class="form-group">
+            <label for="pickupEnd">Pickup End Time:</label>
+            <input type="text" class="form-control" id="pickupEnd">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <br>
+    <br> {{!-- This table shows all pickup requests from THIS USER ONLY --}}
+    <table class="table">
+        <thead>
+            <h3>Your pending pickup requests:</h3>
+            <p>Please mark pickup as "complete" once our driver has fulfilled your request.</p>
+            <tr>
+                <th>Id</th>
+                {{!--
+                <th>Name</th> --}}
+                <th>Phone</th>
+                {{!--
+                <th>Address</th> --}}
+                <th>Type</th>
+                <th>Quantity (in lbs)</th>
+                <th>Pickup Start Time</th>
+                <th>Pickup End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{!-- change this so its an each loop for each of THIS USERS requests, not for all of our users requests --}} {{!-- I think
+            we have to link our two tables before we can do this --}} {{#each requests}}
+            <tr>
+                <td>{{this.id}}</td>
+                {{!--
+                <td>{{this.name}}</td> --}}
+                <td>{{this.phone}}</td>
+                {{!--
+                <td>{{this.address}}</td> --}}
+                <td>{{this.type}}</td>
+                <td>{{this.quantity_in_lbs}}</td>
+                <td>{{this.pickupStart}}</td>
+                <td>{{this.pickupEnd}}</td>
+
+                <td>
+                    {{!-- removed  class btn-danger so not red --}}
+                    <button class="btn delete-btn" data-id={{this.id}}>Pickup Complete</button>
+                </td>
+                <td>
+                    <a class="btn btn-default edit-btn" href="/requestEdit/{{this.id}}">Edit Request</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+</div>

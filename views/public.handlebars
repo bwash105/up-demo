@@ -1,0 +1,30 @@
+<div class="container">
+
+    <h3>
+        <strong>Explore Pending Pickups from the Up Community</strong>
+    </h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Quantity (in lbs)</th>
+                <th>Pickup Start Time</th>
+                <th>Pickup End Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each allRequests}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.type}}</td>
+                <td>{{this.quantity_in_lbs}}</td>
+                <td>{{this.pickupStart}}</td>
+                <td>{{this.pickupEnd}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+</div>
